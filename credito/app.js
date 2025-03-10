@@ -15,9 +15,13 @@ app.listen(puerto, () => {
 
 // crear ruta
 app.post('/credito', (req, res) => {
-    const credito = req.body;
-    const { numeroCredito } = credito;
+    const contenido = req.body;
+    const { numeroCredito, claveCliente, nombreCliente, importe, pagoMensual, fechaInicio, fechaTermino } = contenido;
     const path = `./credito-${numeroCredito}.json`;
+
+    const credito = {
+        numeroCredito, claveCliente, nombreCliente, importe, pagoMensual, fechaInicio, fechaTermino
+    };
 
     // crear el archivo JSON
     fs.writeFile(path, JSON.stringify(credito), (err) => {
